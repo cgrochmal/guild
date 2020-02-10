@@ -76,5 +76,5 @@ Future Enhancements:
  Issues
  ====
  - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
- - There is not enough unit test coverage. Currently I have most of the API code covered. On the UI I have basic snapshot tests for each component and then a couple of tests for the `ActionCableConnector` service. I would improve component tests by incorporating UI state changes, and then I would get the services to 100% coverage. (I did the API first and ran out of time with the UI, so it's probably a bit messier overall)
+ - There is not enough unit test coverage. Currently I have most of the API code covered. On the UI I have basic snapshot tests for each component. I would improve component tests by incorporating UI state changes, and then I would get the services to 100% coverage. (I did the API first and ran out of time with the UI, so it's probably a bit messier overall)
  - various other shortcomings are mentioned in code comments
