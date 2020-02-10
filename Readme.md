@@ -1,5 +1,16 @@
 Messaging App
 
+ Setup
+ ====
+ *from the guild-messaging directory*
+ 1. ensure ruby, rails, and sqlite3 are installed as per [this guide](https://guides.rubyonrails.org/getting_started.html)
+ 2. `bundle install`
+ 3. `rake db:setup`
+ *with the API server running, open a new terminal in guild-messaging-ui*
+ 1. npm install
+ 2. npm start
+ 
+ The app should now be visible at localhost:3001
 
 Issues
 	- the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
@@ -51,13 +62,3 @@ Future Enhancements:
  - ability to edit recent messages
  - read receipts
  - Error Handling
-
-
-
- Setup
- ====
- install rails (>5)
- install ruby
- install sqlite3
- bundle install
- rake db:setup
