@@ -55,6 +55,7 @@ Other Design Notes
  - A generic 'messaging' websocket/action cable channel is used for now - this would be broken up by user in future enhancements
  - API uses `rspec` and `factory_bot` for unit testing. UI uses `jest`
  - Using SCSS for styles
+ - Using the Rails default sqlite database for simplicity - would use something like Postgres in the real world
 
 Future Enhancements:
  - more robust architecture: use Kafka or RabbitMQ to handle higher loads
