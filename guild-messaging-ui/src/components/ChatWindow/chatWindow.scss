@@ -1,0 +1,17 @@
+.chat-window {
+  padding: 0 16px;
+  // TODO: componentize .message
+  .message {
+    display: flex;
+      flex-direction: column;
+
+    &__from {
+      font-size: 10px;
+      color: gray;
+    }
+    &__body {
+      font-size: 20px;
+      padding: 4px 16px 8px 16px;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+
+.user-list {
+  display: flex;
+    flex-direction: column;
+    
+  &__row {
+    cursor: pointer;
+    &:hover, &--selected {
+      background-color: lightgrey;
+    }
+  }
+}
