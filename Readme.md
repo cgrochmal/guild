@@ -1,6 +1,6 @@
 # Guild Messaging App
 
-This simple chat app is comprised of a Rails API and React frontend. It uses Rails' ActionCable module to send new messages to the client via Websocket. There are plenty of potential enhancements/improvements documented below, but for now this is the basic workflow: 
+This simple chat app is composed of a Rails API and React frontend. It uses Rails' ActionCable module to send new messages to the client via Websocket. There are plenty of potential enhancements/improvements documented below, but for now this is the basic workflow: 
 1.  select user to log in as (via dropdown or list selection)
 2.  Select user to chat with 
 3.  You are brought to the chat window.
