@@ -18,10 +18,6 @@ This simple chat app is composed of a Rails API and React frontend. It uses Rail
  
  The app should now be running at localhost:3001
 
- Issues
- ====
- - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
-
 Design Details
 =====
 
@@ -74,3 +70,7 @@ Future Enhancements:
  - read receipts
  - Add redux or comparable state container for data caching and improved app state handling.
  - Error Handling
+
+ Issues
+ ====
+ - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
