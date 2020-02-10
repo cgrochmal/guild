@@ -6,9 +6,16 @@ import ActionCableConnector from '../../services/ActionCable/ActionCableConnecto
 import ApiService from '../../services/ApiService'
 import './chatWindow.scss'
 
-class ChatWindow extends React.Component {
+/**
+ *  Container for a chat conversation between 2 users. 
+ *  Registers with ActionCable on didMount
+ */
+export class ChatWindow extends React.Component {
   constructor(props) {
     super(props)
+    ChatWindow.propTypes = {
+      users: PropTypes.arrayOf(PropTypes.object)
+    }
     this.state = {
       loading: true,
       messages: [],
@@ -29,7 +36,6 @@ class ChatWindow extends React.Component {
   }
 
   async fetchChatHistory() {
-    const {params} = this.props.match
     const currentUserId = +localStorage.currentUserId
     const messages = await ApiService.getChatHistory(currentUserId, this.chatUserId)
     this.setState({messages, loading: false})
@@ -41,16 +47,19 @@ class ChatWindow extends React.Component {
   handleIncomingMessage(data) {
     const {messages} = this.state
     // TODO: handle edge cases, don't just assume data is correct
-    const {id, from_user, to_user, created_at, body} = data
-    const newMessage = {
-      id, 
-      from_user_id: from_user,
-      to_user_id: to_user,
-      created_at,
-      body
+    const {id, from_user_id, to_user_id, created_at, body} = data
+    
+    if (from_user_id === this.chatUserId && to_user_id === +localStorage.currentUserId) {
+      const newMessage = {
+        id, 
+        from_user_id,
+        to_user_id,
+        created_at,
+        body
+      }
+      messages.push(newMessage)
+      this.setState({messages})
     }
-    messages.push(newMessage)
-    this.setState({messages})
   }
 
   goBack() {
@@ -66,17 +75,16 @@ class ChatWindow extends React.Component {
     const {messageText, messages} = this.state
     const message = {
       body: messageText,
-      created_at: Date.now(),
+      created_at: Date.now(), // TODO: date formatting
       to_user: this.chatUserId,
       from_user: +localStorage.currentUserId
     }
-    // immediately render so we don't have to wait on the API
-    // TODO: date formatting
+    // immediately render placeholder so we don't have to wait on the API
     messages.push(message)
     const newMessageIndex = messages.indexOf(message)
     this.setState({messages, messageText: ''})
     
-    // TODO: rollback logic in case of failure
+    // TODO: UI rollback logic in case of failure
     const createdMessage = await ApiService.sendMessage(message)
     // overwrite temporary message with actual result from API
     messages[newMessageIndex] = createdMessage
@@ -112,7 +120,7 @@ class ChatWindow extends React.Component {
 
   render() {
     const {users} = this.props
-    const {messages, loading, messageText} = this.state
+    const {messageText} = this.state
 
     // TODO: improve this edge case handling
     if (!users || !users.length) return null

@@ -5,7 +5,10 @@ import {withRouter} from 'react-router-dom'
 import UserList from '../UserList/userList'
 import './login.scss'
 
-class Login extends React.Component {
+/**
+ * Login / User selection top-level container
+ */
+export class Login extends React.Component {
   constructor(props) {
     super(props)
     Login.propTypes = {

@@ -5,12 +5,17 @@ import {withRouter} from 'react-router-dom'
 import UserList from '../UserList/userList'
 import './chatSelector.scss'
 
-class ChatSelector extends React.Component {
+/**
+ * Container used to select a user to initiate or resume a chat with.
+ */
+export class ChatSelector extends React.Component {
   constructor(props) {
     super(props)
     ChatSelector.propTypes = {
       users: PropTypes.arrayOf(PropTypes.object)
     }
+
+    // remove currentUser from user list (not allowed to chat with yourself.. yet)
     this.state = {
       selectedChatUser: null,
       users: props.users.filter(user => user.id !== +localStorage.currentUserId)
@@ -24,7 +29,7 @@ class ChatSelector extends React.Component {
   componentDidUpdate(prevProps) {
     const {users} = this.props
     if (this.props.users !== prevProps.users) {
-      // this code is repeated and could be collapsed into a function
+      // this filter code is repeated and could be collapsed into a function
       const usersBesidesCurrent = users.filter(user => user.id !== +localStorage.currentUserId)
       this.setState({users: usersBesidesCurrent})
     }

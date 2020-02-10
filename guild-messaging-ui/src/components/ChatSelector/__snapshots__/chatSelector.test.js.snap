@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the ChatSelector snapshot 1`] = `
+<section
+  className="chat-select-container"
+>
+  <h1
+    className="chat-select-container__heading"
+  >
+    Select a user to chat with
+  </h1>
+  <div
+    className="user-list"
+  >
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user1
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user2
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user3
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user4
+    </span>
+  </div>
+  <span
+    className="chat-select-container__buttons"
+  >
+    <button
+      className="chat-button"
+      onClick={[Function]}
+    >
+      Go Back
+    </button>
+    <button
+      className="chat-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Open Chat
+    </button>
+  </span>
+</section>
+`;

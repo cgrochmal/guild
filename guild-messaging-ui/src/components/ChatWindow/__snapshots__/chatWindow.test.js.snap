@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the ChatWindow snapshot 1`] = `
+<section
+  className="chat-window"
+>
+  <h1
+    className="chat-window__heading"
+  >
+    Conversation with user1
+  </h1>
+  <div
+    className="chat-window__messages"
+  >
+    <span
+      className="messages-empty"
+    >
+      Loading Message History...
+    </span>
+  </div>
+  <input
+    className="chat-window__input"
+    onChange={[Function]}
+    value=""
+  />
+  <span
+    className="chat-window__buttons"
+  >
+    <button
+      className="chat-button"
+      onClick={[Function]}
+    >
+      Go Back
+    </button>
+    <button
+      className="chat-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Send Message
+    </button>
+  </span>
+</section>
+`;

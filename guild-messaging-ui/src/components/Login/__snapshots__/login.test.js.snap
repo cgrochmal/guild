@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the Login snapshot 1`] = `
+<section
+  className="login-container"
+>
+  <h1
+    className="login-container__heading"
+  >
+    Please select your username
+  </h1>
+  <div
+    className="user-list"
+  >
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user0
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user1
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user2
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user3
+    </span>
+    <span
+      className="user-list__row"
+      onClick={[Function]}
+    >
+      user4
+    </span>
+  </div>
+  <button
+    className="chat-button login-container__button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Log In
+  </button>
+</section>
+`;
