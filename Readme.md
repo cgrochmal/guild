@@ -51,9 +51,10 @@ Endpoints:
 		}
 
 Other Design Notes
- - the app makes use of `LocalStorage` to keep track of the current user. As such you will notice that I regularly use the unary + operator to coerce the localStorage string to a number.
+ - the app makes use of `LocalStorage` to keep track of the current user.
  - A generic 'messaging' websocket/action cable channel is used for now - this would be broken up by user in future enhancements
  - API uses `rspec` and `factory_bot` for unit testing. UI uses `jest`
+ - Using SCSS for styles
 
 Future Enhancements:
  - more robust architecture: use Kafka or RabbitMQ to handle higher loads
@@ -72,9 +73,10 @@ Future Enhancements:
  - Add redux or comparable state container for data caching and improved app state handling.
  - Error Handling
  - a prettier UI
+ - better componentization (starting with generic chat message component and button component)
 
  Issues
  ====
- - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
+ - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation. Similarly, it's also a bit misleading for `from_user` to be an ID - I went back and forth on passing usernames instead of ids. 
  - There is not enough unit test coverage. Currently I have most of the API code covered. On the UI I have basic snapshot tests for each component. I would improve component tests by incorporating UI state changes, and then I would get the services to 100% coverage. (I did the API first and ran out of time with the UI, so it's probably a bit messier overall)
  - various other shortcomings are mentioned in code comments
