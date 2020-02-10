@@ -10,9 +10,8 @@ import Login from './components/Login/login'
 import ChatSelector from './components/ChatSelector/chatSelector'
 import ChatWindow from './components/ChatWindow/chatWindow'
 import ApiService from './services/ApiService'
-
-
 import ActionCableConnector from './services/ActionCable/ActionCableConnector'
+import './App.scss'
 
 export default class App extends React.Component {
 

@@ -73,22 +73,24 @@ export class ChatWindow extends React.Component {
 
   async sendMessage() {
     const {messageText, messages} = this.state
-    const message = {
-      body: messageText,
-      created_at: Date.now(), // TODO: date formatting
-      to_user: this.chatUserId,
-      from_user: +localStorage.currentUserId
+    if (messageText) {
+      const message = {
+        body: messageText,
+        created_at: Date.now(), // TODO: date formatting
+        to_user: this.chatUserId,
+        from_user: +localStorage.currentUserId
+      }
+      // immediately render placeholder so we don't have to wait on the API
+      messages.push(message)
+      const newMessageIndex = messages.indexOf(message)
+      this.setState({messages, messageText: ''})
+      
+      // TODO: UI rollback logic in case of failure
+      const createdMessage = await ApiService.sendMessage(message)
+      // overwrite temporary message with actual result from API
+      messages[newMessageIndex] = createdMessage
+      this.setState({messages})
     }
-    // immediately render placeholder so we don't have to wait on the API
-    messages.push(message)
-    const newMessageIndex = messages.indexOf(message)
-    this.setState({messages, messageText: ''})
-    
-    // TODO: UI rollback logic in case of failure
-    const createdMessage = await ApiService.sendMessage(message)
-    // overwrite temporary message with actual result from API
-    messages[newMessageIndex] = createdMessage
-    this.setState({messages})
   }
 
   /**
@@ -133,15 +135,16 @@ export class ChatWindow extends React.Component {
         <div className='chat-window__messages'>
           {this.renderChatMessages()}
         </div>
-        <input className='chat-window__input' onChange={this.setMessageText} value={messageText}/>
-        <span className='chat-window__buttons'>
-          <button className='chat-button' onClick={this.goBack}>
-            {'Go Back'}
-          </button>
-          <button className='chat-button' onClick={this.sendMessage} disabled={!messageText}>
+
+        <form className='chat-window__input-and-send' onSubmit={this.sendMessage}>
+          <input className='chat-window__input' onChange={this.setMessageText} value={messageText}/>
+          <button className='chat-button' onClick={this.sendMessage} disabled={!messageText} type="submit">
             {'Send Message'}
           </button>
-        </span>
+        </form>
+        <button className='chat-button' onClick={this.goBack}>
+          {'Go Back'}
+        </button>
       </section>
     )
   }

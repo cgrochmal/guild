@@ -13,3 +13,11 @@ User.create([
     {username: 'interviewer2'}
 ])
 
+# chris = User.where(username: 'chris')
+# i1 = User.where(username: 'interviewer1', body: body)
+body = 'Welcome to my simple chat app! If you have any questions, please do not hesitate to reach out to me at cgrochmal@gmail.com. I would love the opportunity to discuss some of the design decisions I made with you all!'
+Message.create([
+    {from_user_id: User.where(username: 'chris').first.id, to_user_id: User.where(username: 'interviewer1').first.id, body: body},
+    {from_user_id: User.where(username: 'chris').first.id, to_user_id: User.where(username: 'interviewer2').first.id, body: body}
+])
+
