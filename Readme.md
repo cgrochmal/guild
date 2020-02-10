@@ -51,9 +51,10 @@ Endpoints:
 		}
 
 Other Design Notes
- - the app makes use of `LocalStorage` to keep track of the current user. As such you will notice that I regularly use the unary + operator to coerce the localStorage string to a number.
+ - the app makes use of `LocalStorage` to keep track of the current user.
  - A generic 'messaging' websocket/action cable channel is used for now - this would be broken up by user in future enhancements
  - API uses `rspec` and `factory_bot` for unit testing. UI uses `jest`
+ - Using SCSS for styles
 
 Future Enhancements:
  - more robust architecture: use Kafka or RabbitMQ to handle higher loads
@@ -72,6 +73,7 @@ Future Enhancements:
  - Add redux or comparable state container for data caching and improved app state handling.
  - Error Handling
  - a prettier UI
+ - better componentization (starting with generic chat message component and button component)
 
  Issues
  ====
