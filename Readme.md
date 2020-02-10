@@ -6,15 +6,19 @@ Messaging App
  1. ensure ruby, rails, and sqlite3 are installed as per [this guide](https://guides.rubyonrails.org/getting_started.html)
  2. `bundle install`
  3. `rake db:setup`
+ 
  *with the API server running, open a new terminal in guild-messaging-ui*
  1. npm install
  2. npm start
  
- The app should now be visible at localhost:3001
+ The app should now be running at localhost:3001
 
-Issues
-	- the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
+ Issues
+ ====
+ - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
 
+Design
+=====
 Basic idea (MVP implementation): use Rails' ActionCable module to send new messages to the client via Websocket
 	- select user to log in as (via dropdown or list selection)
 	- Select user to chat with 
