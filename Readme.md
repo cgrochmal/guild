@@ -1,4 +1,4 @@
-Messaging App
+# Guild Messaging App
 
  Setup
  ====
