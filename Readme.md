@@ -51,8 +51,9 @@ Endpoints:
 		}
 
 Other Design Notes
- - the app makes use of `LocalStorage` to keep track of the current user
+ - the app makes use of `LocalStorage` to keep track of the current user. As such you will notice that I regularly use the unary + operator to coerce the localStorage string to a number.
  - A generic 'messaging' websocket/action cable channel is used for now - this would be broken up by user in future enhancements
+ - API uses `rspec` and `factory_bot` for unit testing. UI uses `jest`
 
 Future Enhancements:
  - more robust architecture: use Kafka or RabbitMQ to handle higher loads
@@ -70,7 +71,9 @@ Future Enhancements:
  - read receipts
  - Add redux or comparable state container for data caching and improved app state handling.
  - Error Handling
+ - a prettier UI
 
  Issues
  ====
  - the contract for GET /messages is misleading. It retrieves messages to or from both users, but the parameters imply that only a one-way message history will be retrieved. This could be remedied through use of a session token to track current user, and then something like GET /messages_with?user={}. A quicker solution would be to change the parameters to something like user1 and user2, but I kept it as-is to simplify implementation.
+ - there is not enough unit test coverage
